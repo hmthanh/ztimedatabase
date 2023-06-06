@@ -17,6 +17,7 @@ model User {
 }
 
 model Bandwidth {
+  id                                    Int      @id @default(autoincrement())
   time                                  DateTime @unique
   server_id                             Int      @unique
   app_id                                Int      @unique
