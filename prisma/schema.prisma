@@ -19,10 +19,10 @@ model User {
 model Bandwidth {
   id                                    Int      @id @default(autoincrement())
   time                                  DateTime @default(now())
-  server_id                             Int      @unique
-  app_id                                Int      @unique
-  servername                            String
-  appname                               String
+  server_id                             Int
+  app_id                                Int
+  servername                            String   @default("")
+  appname                               String   @default("")
   // HTTP User bandwidth send by country
   TotalBandwidthByCountry_Vietnam       BigInt   @default(0)
   TotalBandwidthByCountry_US            BigInt   @default(0)
@@ -54,10 +54,10 @@ model Bandwidth {
 model HTTPSBandwidth {
   id                                             Int      @id @default(autoincrement())
   time                                           DateTime @default(now())
-  server_id                                      Int      @unique
-  app_id                                         Int      @unique
-  servername                                     String
-  appname                                        String
+  server_id                                      Int
+  app_id                                         Int
+  servername                                     String   @default("")
+  appname                                        String   @default("")
   // TotalBandwidthSendClientHTTPS
   TotalBandwidthSendHTTPS_Outbound               BigInt   @default(0)
   // TotalBandwidthReceiveClientHTTPS
@@ -99,10 +99,10 @@ model HTTPSBandwidth {
 model HTTP2Bandwidth {
   id                                             Int      @id @default(autoincrement())
   time                                           DateTime @default(now())
-  server_id                                      Int      @unique
-  app_id                                         Int      @unique
-  servername                                     String
-  appname                                        String
+  server_id                                      Int
+  app_id                                         Int
+  servername                                     String   @default("")
+  appname                                        String   @default("")
   // TotalBandwidthSendClientHTTP2
   TotalBandwidthSendHTTP2_Outbound               BigInt   @default(0)
   // TotalBandwidthReceiveClientHTTP2
@@ -144,10 +144,10 @@ model HTTP2Bandwidth {
 model Cache {
   id                    Int      @id @default(autoincrement())
   time                  DateTime @default(now())
-  server_id             Int      @unique
-  app_id                Int      @unique
-  servername            String
-  appname               String
+  server_id             Int
+  app_id                Int
+  servername            String   @default("")
+  appname               String   @default("")
   PercentMemHitTotal    BigInt   @default(0)
   PercentDiskHitTotal   BigInt   @default(0)
   // Calculate by PercentMemHit and PercentDiskHit
@@ -163,43 +163,43 @@ model Cache {
 model Response {
   id                                    Int      @id @default(autoincrement())
   time                                  DateTime @default(now())
-  server_id                             Int      @unique
-  app_id                                Int      @unique
-  servername                            String
-  appname                               String
+  server_id                             Int
+  app_id                                Int
+  servername                            String   @default("")
+  appname                               String   @default("")
   TotalConnDownload                     BigInt   @default(0)
   TotalRequestDownload                  BigInt   @default(0)
   TotalRequestDownloadRetry             BigInt   @default(0)
   TotalCCUDownload                      BigInt   @default(0)
   TotalCCURequestDownload               BigInt   @default(0)
-  RecentTimeDownload                    BigInt   @default(0)
-  ConnPoolsDownload_PoolSize            BigInt   @default(0)
-  ConnPoolsDownload_MaxPoolSize         BigInt   @default(0)
-  ConnPoolsDownload_TotalBorrow         BigInt   @default(0)
-  ConnPoolsDownload_TotalInvalid        BigInt   @default(0)
-  ConnPoolsDownload_TotalConnectFailed  BigInt   @default(0)
-  ConnPoolsDownload_TotalConnectSuccess BigInt   @default(0)
+  RecentTimeDownload                    BigInt   @default(0) // getRecentTimeDownload
+  ConnPoolsDownload_PoolSize            BigInt   @default(0) // poolSize
+  ConnPoolsDownload_MaxPoolSize         BigInt   @default(0) // maxPoolSize
+  ConnPoolsDownload_TotalBorrow         BigInt   @default(0) // totalBorowPoolDown
+  ConnPoolsDownload_TotalInvalid        BigInt   @default(0) // totalInvalidPoolDown
+  ConnPoolsDownload_TotalConnectFailed  BigInt   @default(0) // totalConnFailPoolDown
+  ConnPoolsDownload_TotalConnectSuccess BigInt   @default(0) // totalConnSuccessPoolDown
 }
 
 // Tab Internal download
 model InternalDownload {
   id                                    Int      @id @default(autoincrement())
   time                                  DateTime @default(now())
-  server_id                             Int      @unique
-  app_id                                Int      @unique
-  servername                            String
-  appname                               String
-  TotalRequestDownloadInternal          BigInt   @default(0)
-  TotalRequestDownloadInternalRetry     BigInt   @default(0)
-  TotalCCURequestDownloadInternal       BigInt   @default(0)
-  TotalCCUDownloadInternal              BigInt   @default(0)
-  TotalCloseDownloadInternal            BigInt   @default(0)
-  TotalConnDownloadInternal             BigInt   @default(0)
-  RecentTimeDownloadInternal            BigInt   @default(0)
-  TotalBandwidthReceiveDownloadInternal BigInt   @default(0)
-  TotalBandwidthSendDownloadInternal    BigInt   @default(0)
-  TotalBandwidthReceiveClientInternal   BigInt   @default(0)
-  TotalBandwidthSendClientInternal      BigInt   @default(0)
+  server_id                             Int
+  app_id                                Int
+  servername                            String   @default("")
+  appname                               String   @default("")
+  TotalRequestDownloadInternal          BigInt   @default(0) // getTotalRequestDownloadInternal
+  TotalRequestDownloadInternalRetry     BigInt   @default(0) // getTotalRequestDownloadInternalRetry
+  TotalCCURequestDownloadInternal       BigInt   @default(0) // getTotalCCURequestDownloadInternal
+  TotalCCUDownloadInternal              BigInt   @default(0) // getTotalCCUDownloadInternal
+  TotalCloseDownloadInternal            BigInt   @default(0) // getTotalCloseDownloadInternal
+  TotalConnDownloadInternal             BigInt   @default(0) // getTotalConnDownloadInternal
+  RecentTimeDownloadInternal            BigInt   @default(0) // getRecentTimeDownloadInternal
+  TotalBandwidthReceiveDownloadInternal BigInt   @default(0) // getTotalBandwidthReceiveDownloadInternal
+  TotalBandwidthSendDownloadInternal    BigInt   @default(0) // getTotalBandwidthSendDownloadInternal
+  TotalBandwidthReceiveClientInternal   BigInt   @default(0) // getTotalBandwidthReceiveClientInternal
+  TotalBandwidthSendClientInternal      BigInt   @default(0) // getTotalBandwidthSendClientInternal
 }
 
 // Tab Overlay download
@@ -208,49 +208,50 @@ model InternalDownload {
 model HTTPStatusCode {
   id           Int      @id @default(autoincrement())
   time         DateTime @default(now())
-  server_id    Int      @unique
-  app_id       Int      @unique
-  servername   String
-  appname      String
-  Total200     BigInt   @default(0)
-  Total301     BigInt   @default(0)
-  Total302     BigInt   @default(0)
-  Total304     BigInt   @default(0)
-  Total400     BigInt   @default(0)
-  Total403     BigInt   @default(0)
-  Total404     BigInt   @default(0)
-  Total500     BigInt   @default(0)
-  Total502     BigInt   @default(0)
-  TotalClose   BigInt   @default(0)
-  TotalUnknown BigInt   @default(0)
+  server_id    Int
+  app_id       Int
+  timestamp    BigInt   @default(0)
+  servername   String   @default("")
+  appname      String   @default("")
+  Total200     BigInt   @default(0) // getTotal200
+  Total301     BigInt   @default(0) // getTotal301
+  Total302     BigInt   @default(0) // getTotal302
+  Total304     BigInt   @default(0) // getTotal304
+  Total400     BigInt   @default(0) // getTotal400
+  Total403     BigInt   @default(0) // getTotal403
+  Total404     BigInt   @default(0) // getTotal404
+  Total500     BigInt   @default(0) // getTotal500
+  Total502     BigInt   @default(0) // getTotal502
+  TotalClose   BigInt   @default(0) // getTotalClose
+  TotalUnknown BigInt   @default(0) // getTotalUnknown
 }
 
 // Tab HTTP - HTTP2 ErrorCode
 model HTTP2ErrorCode {
   id                        Int      @id @default(autoincrement())
   time                      DateTime @default(now())
-  server_id                 Int      @unique
-  app_id                    Int      @unique
-  servername                String
-  appname                   String
-  TotalRcvProtocolError     BigInt   @default(0)
-  TotalRcvCancel            BigInt   @default(0)
-  TotalRcvCompressionError  BigInt   @default(0)
-  TotalRcvFlowControlError  BigInt   @default(0)
-  TotalRcvFrameSizeError    BigInt   @default(0)
-  TotalRcvInternalError     BigInt   @default(0)
-  TotalRcvRefusedStream     BigInt   @default(0)
-  TotalRcvSettingTimeout    BigInt   @default(0)
-  TotalRcvStreamClose       BigInt   @default(0)
-  TotalSendProtocolError    BigInt   @default(0)
-  TotalSendCancel           BigInt   @default(0)
-  TotalSendCompressionError BigInt   @default(0)
-  TotalSendFlowControlError BigInt   @default(0)
-  TotalSendFrameSizeError   BigInt   @default(0)
-  TotalSendInternalError    BigInt   @default(0)
-  TotalSendRefusedStream    BigInt   @default(0)
-  TotalSendSettingTimeout   BigInt   @default(0)
-  TotalSendStreamClose      BigInt   @default(0)
+  server_id                 Int
+  app_id                    Int
+  servername                String   @default("")
+  appname                   String   @default("")
+  TotalRcvProtocolError     BigInt   @default(0) // getTotalRcvProtocolError
+  TotalRcvCancel            BigInt   @default(0) // getTotalRcvCancel
+  TotalRcvCompressionError  BigInt   @default(0) // getTotalRcvCompressionError
+  TotalRcvFlowControlError  BigInt   @default(0) // getTotalRcvFlowControlError
+  TotalRcvFrameSizeError    BigInt   @default(0) // getTotalRcvFrameSizeError
+  TotalRcvInternalError     BigInt   @default(0) // getTotalRcvInternalError
+  TotalRcvRefusedStream     BigInt   @default(0) // getTotalRcvRefusedStream
+  TotalRcvSettingTimeout    BigInt   @default(0) // getTotalRcvSettingTimeout
+  TotalRcvStreamClose       BigInt   @default(0) // getTotalRcvStreamClose
+  TotalSendProtocolError    BigInt   @default(0) // getTotalSendProtocolError
+  TotalSendCancel           BigInt   @default(0) // getTotalSendCancel
+  TotalSendCompressionError BigInt   @default(0) // getTotalSendCompressionError
+  TotalSendFlowControlError BigInt   @default(0) // getTotalSendFlowControlError
+  TotalSendFrameSizeError   BigInt   @default(0) // getTotalSendFrameSizeError
+  TotalSendInternalError    BigInt   @default(0) // getTotalSendInternalError
+  TotalSendRefusedStream    BigInt   @default(0) // getTotalSendRefusedStream
+  TotalSendSettingTimeout   BigInt   @default(0) // getTotalSendSettingTimeout
+  TotalSendStreamClose      BigInt   @default(0) // getTotalSendStreamClose
 }
 
 // Tab response
@@ -260,10 +261,10 @@ model HTTP2ErrorCode {
 model Connection {
   id                     Int      @id @default(autoincrement())
   time                   DateTime @default(now())
-  server_id              Int      @unique
-  app_id                 Int      @unique
-  servername             String
-  appname                String
+  server_id              Int
+  app_id                 Int
+  servername             String   @default("")
+  appname                String   @default("")
   RespondConnsCliHTTP    BigInt   @default(0)
   RespondConnsCliHTTPS   BigInt   @default(0)
   RespondConnsCliHTTP2   BigInt   @default(0)
