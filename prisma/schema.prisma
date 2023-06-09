@@ -21,8 +21,6 @@ model Bandwidth {
   time                                  DateTime @default(now())
   server_id                             Int
   app_id                                Int
-  servername                            String   @default("")
-  appname                               String   @default("")
   // HTTP User bandwidth send by country
   TotalBandwidthByCountry_Vietnam       BigInt   @default(0)
   TotalBandwidthByCountry_US            BigInt   @default(0)
@@ -56,8 +54,6 @@ model HTTPSBandwidth {
   time                                           DateTime @default(now())
   server_id                                      Int
   app_id                                         Int
-  servername                                     String   @default("")
-  appname                                        String   @default("")
   // TotalBandwidthSendClientHTTPS
   TotalBandwidthSendHTTPS_Outbound               BigInt   @default(0)
   // TotalBandwidthReceiveClientHTTPS
@@ -101,8 +97,6 @@ model HTTP2Bandwidth {
   time                                           DateTime @default(now())
   server_id                                      Int
   app_id                                         Int
-  servername                                     String   @default("")
-  appname                                        String   @default("")
   // TotalBandwidthSendClientHTTP2
   TotalBandwidthSendHTTP2_Outbound               BigInt   @default(0)
   // TotalBandwidthReceiveClientHTTP2
@@ -146,8 +140,6 @@ model Cache {
   time                  DateTime @default(now())
   server_id             Int
   app_id                Int
-  servername            String   @default("")
-  appname               String   @default("")
   PercentMemHitTotal    BigInt   @default(0)
   PercentDiskHitTotal   BigInt   @default(0)
   // Calculate by PercentMemHit and PercentDiskHit
@@ -160,13 +152,11 @@ model Cache {
 }
 
 // Tab Download
-model Response {
+model Download {
   id                                    Int      @id @default(autoincrement())
   time                                  DateTime @default(now())
   server_id                             Int
   app_id                                Int
-  servername                            String   @default("")
-  appname                               String   @default("")
   TotalConnDownload                     BigInt   @default(0)
   TotalRequestDownload                  BigInt   @default(0)
   TotalRequestDownloadRetry             BigInt   @default(0)
@@ -187,8 +177,6 @@ model InternalDownload {
   time                                  DateTime @default(now())
   server_id                             Int
   app_id                                Int
-  servername                            String   @default("")
-  appname                               String   @default("")
   TotalRequestDownloadInternal          BigInt   @default(0) // getTotalRequestDownloadInternal
   TotalRequestDownloadInternalRetry     BigInt   @default(0) // getTotalRequestDownloadInternalRetry
   TotalCCURequestDownloadInternal       BigInt   @default(0) // getTotalCCURequestDownloadInternal
@@ -211,8 +199,6 @@ model HTTPStatusCode {
   server_id    Int
   app_id       Int
   timestamp    BigInt   @default(0)
-  servername   String   @default("")
-  appname      String   @default("")
   Total200     BigInt   @default(0) // getTotal200
   Total301     BigInt   @default(0) // getTotal301
   Total302     BigInt   @default(0) // getTotal302
@@ -232,8 +218,6 @@ model HTTP2ErrorCode {
   time                      DateTime @default(now())
   server_id                 Int
   app_id                    Int
-  servername                String   @default("")
-  appname                   String   @default("")
   TotalRcvProtocolError     BigInt   @default(0) // getTotalRcvProtocolError
   TotalRcvCancel            BigInt   @default(0) // getTotalRcvCancel
   TotalRcvCompressionError  BigInt   @default(0) // getTotalRcvCompressionError
@@ -263,8 +247,6 @@ model Connection {
   time                   DateTime @default(now())
   server_id              Int
   app_id                 Int
-  servername             String   @default("")
-  appname                String   @default("")
   RespondConnsCliHTTP    BigInt   @default(0)
   RespondConnsCliHTTPS   BigInt   @default(0)
   RespondConnsCliHTTP2   BigInt   @default(0)
