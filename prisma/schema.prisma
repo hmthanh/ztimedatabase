@@ -18,9 +18,9 @@ model User {
 
 model Bandwidth {
   id                                    Int      @id @default(autoincrement())
-  time                                  DateTime @default(now())
-  server_id                             Int
-  app_id                                Int
+  time                                  DateTime @default(now()) @db.Timestamptz
+  serverId                              Int
+  appId                                 Int
   // HTTP User bandwidth send by country
   TotalBandwidthByCountry_Vietnam       BigInt   @default(0)
   TotalBandwidthByCountry_US            BigInt   @default(0)
@@ -51,9 +51,9 @@ model Bandwidth {
 // Tab HTTPS Bandwidth
 model HTTPSBandwidth {
   id                                             Int      @id @default(autoincrement())
-  time                                           DateTime @default(now())
-  server_id                                      Int
-  app_id                                         Int
+  time                                           DateTime @default(now()) @db.Timestamptz
+  serverId                                       Int
+  appId                                          Int
   // TotalBandwidthSendClientHTTPS
   TotalBandwidthSendHTTPS_Outbound               BigInt   @default(0)
   // TotalBandwidthReceiveClientHTTPS
@@ -94,9 +94,9 @@ model HTTPSBandwidth {
 // Tab HTTP2 Bandwidth
 model HTTP2Bandwidth {
   id                                             Int      @id @default(autoincrement())
-  time                                           DateTime @default(now())
-  server_id                                      Int
-  app_id                                         Int
+  time                                           DateTime @default(now()) @db.Timestamptz
+  serverId                                       Int
+  appId                                          Int
   // TotalBandwidthSendClientHTTP2
   TotalBandwidthSendHTTP2_Outbound               BigInt   @default(0)
   // TotalBandwidthReceiveClientHTTP2
@@ -137,9 +137,9 @@ model HTTP2Bandwidth {
 // Tab Cache
 model Cache {
   id                    Int      @id @default(autoincrement())
-  time                  DateTime @default(now())
-  server_id             Int
-  app_id                Int
+  time                  DateTime @default(now()) @db.Timestamptz
+  serverId              Int
+  appId                 Int
   PercentMemHitTotal    BigInt   @default(0)
   PercentDiskHitTotal   BigInt   @default(0)
   // Calculate by PercentMemHit and PercentDiskHit
@@ -154,9 +154,9 @@ model Cache {
 // Tab Download
 model Download {
   id                                    Int      @id @default(autoincrement())
-  time                                  DateTime @default(now())
-  server_id                             Int
-  app_id                                Int
+  time                                  DateTime @default(now()) @db.Timestamptz
+  serverId                              Int
+  appId                                 Int
   TotalConnDownload                     BigInt   @default(0)
   TotalRequestDownload                  BigInt   @default(0)
   TotalRequestDownloadRetry             BigInt   @default(0)
@@ -174,9 +174,9 @@ model Download {
 // Tab Internal download
 model InternalDownload {
   id                                    Int      @id @default(autoincrement())
-  time                                  DateTime @default(now())
-  server_id                             Int
-  app_id                                Int
+  time                                  DateTime @default(now()) @db.Timestamptz
+  serverId                              Int
+  appId                                 Int
   TotalRequestDownloadInternal          BigInt   @default(0) // getTotalRequestDownloadInternal
   TotalRequestDownloadInternalRetry     BigInt   @default(0) // getTotalRequestDownloadInternalRetry
   TotalCCURequestDownloadInternal       BigInt   @default(0) // getTotalCCURequestDownloadInternal
@@ -195,10 +195,9 @@ model InternalDownload {
 
 model HTTPStatusCode {
   id           Int      @id @default(autoincrement())
-  time         DateTime @default(now())
-  server_id    Int
-  app_id       Int
-  timestamp    BigInt   @default(0)
+  time         DateTime @default(now()) @db.Timestamptz
+  serverId     Int
+  appId        Int
   Total200     BigInt   @default(0) // getTotal200
   Total301     BigInt   @default(0) // getTotal301
   Total302     BigInt   @default(0) // getTotal302
@@ -215,9 +214,9 @@ model HTTPStatusCode {
 // Tab HTTP - HTTP2 ErrorCode
 model HTTP2ErrorCode {
   id                        Int      @id @default(autoincrement())
-  time                      DateTime @default(now())
-  server_id                 Int
-  app_id                    Int
+  time                      DateTime @default(now()) @db.Timestamptz
+  serverId                  Int
+  appId                     Int
   TotalRcvProtocolError     BigInt   @default(0) // getTotalRcvProtocolError
   TotalRcvCancel            BigInt   @default(0) // getTotalRcvCancel
   TotalRcvCompressionError  BigInt   @default(0) // getTotalRcvCompressionError
@@ -244,9 +243,9 @@ model HTTP2ErrorCode {
 // Tab connection
 model Connection {
   id                     Int      @id @default(autoincrement())
-  time                   DateTime @default(now())
-  server_id              Int
-  app_id                 Int
+  time                   DateTime @default(now()) @db.Timestamptz
+  serverId               Int
+  appId                  Int
   RespondConnsCliHTTP    BigInt   @default(0)
   RespondConnsCliHTTPS   BigInt   @default(0)
   RespondConnsCliHTTP2   BigInt   @default(0)
