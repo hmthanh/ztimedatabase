@@ -11,8 +11,7 @@ datasource db {
 }
 
 model Bandwidth {
-  id                                    Int      @id @default(autoincrement())
-  time                                  DateTime @default(now()) @db.Timestamptz(6)
+  time                                  DateTime @id @default(now()) @db.Timestamptz(6)
   serverId                              Int
   appId                                 Int
   TotalBandwidthByCountry_Vietnam       BigInt   @default(0)
@@ -35,11 +34,12 @@ model Bandwidth {
   TotalBandwidthSendClientHTTPS         BigInt   @default(0)
   TotalBandwidthReceiveDownload         BigInt   @default(0)
   TotalBandwidthSendDownload            BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model HTTPSBandwidth {
-  id                                             Int      @id @default(autoincrement())
-  time                                           DateTime @default(now()) @db.Timestamptz(6)
+  time                                           DateTime @id @default(now()) @db.Timestamptz(6)
   serverId                                       Int
   appId                                          Int
   TotalBandwidthSendHTTPS_Outbound               BigInt   @default(0)
@@ -70,11 +70,12 @@ model HTTPSBandwidth {
   DataUsageHTTPSByIsp_FPT                        BigInt   @default(0)
   DataUsageHTTPSByIsp_Other                      BigInt   @default(0)
   DataUsageHTTPSByIsp_Unknown                    BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model HTTP2Bandwidth {
-  id                                             Int      @id @default(autoincrement())
-  time                                           DateTime @default(now()) @db.Timestamptz(6)
+  time                                           DateTime @id @default(now()) @db.Timestamptz(6)
   serverId                                       Int
   appId                                          Int
   TotalBandwidthSendHTTP2_Outbound               BigInt   @default(0)
@@ -105,11 +106,12 @@ model HTTP2Bandwidth {
   TotalDataUsageHTTP2ByIsp_FPT                   BigInt   @default(0)
   TotalDataUsageHTTP2ByIsp_Other                 BigInt   @default(0)
   TotalDataUsageHTTP2ByIsp_Unknown               BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model Cache {
-  id                    Int      @id @default(autoincrement())
-  time                  DateTime @default(now()) @db.Timestamptz(6)
+  time                  DateTime @id @default(now()) @db.Timestamptz(6)
   serverId              Int
   appId                 Int
   PercentMemHitTotal    BigInt   @default(0)
@@ -120,11 +122,12 @@ model Cache {
   TotalRequestHTTP      BigInt   @default(0)
   TotalRequestHTTPS     BigInt   @default(0)
   TotalRequestHTTP2     BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model Download {
-  id                                    Int      @id @default(autoincrement())
-  time                                  DateTime @default(now()) @db.Timestamptz(6)
+  time                                  DateTime @id @default(now()) @db.Timestamptz(6)
   serverId                              Int
   appId                                 Int
   TotalConnDownload                     BigInt   @default(0)
@@ -139,11 +142,12 @@ model Download {
   ConnPoolsDownload_TotalInvalid        BigInt   @default(0)
   ConnPoolsDownload_TotalConnectFailed  BigInt   @default(0)
   ConnPoolsDownload_TotalConnectSuccess BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model InternalDownload {
-  id                                    Int      @id @default(autoincrement())
-  time                                  DateTime @default(now()) @db.Timestamptz(6)
+  time                                  DateTime @id @default(now()) @db.Timestamptz(6)
   serverId                              Int
   appId                                 Int
   TotalRequestDownloadInternal          BigInt   @default(0)
@@ -157,11 +161,12 @@ model InternalDownload {
   TotalBandwidthSendDownloadInternal    BigInt   @default(0)
   TotalBandwidthReceiveClientInternal   BigInt   @default(0)
   TotalBandwidthSendClientInternal      BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model HTTPStatusCode {
-  id           Int      @id @default(autoincrement())
-  time         DateTime @default(now()) @db.Timestamptz(6)
+  time         DateTime @id @default(now()) @db.Timestamptz(6)
   serverId     Int
   appId        Int
   Total200     BigInt   @default(0)
@@ -175,11 +180,12 @@ model HTTPStatusCode {
   Total502     BigInt   @default(0)
   TotalClose   BigInt   @default(0)
   TotalUnknown BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model HTTP2ErrorCode {
-  id                        Int      @id @default(autoincrement())
-  time                      DateTime @default(now()) @db.Timestamptz(6)
+  time                      DateTime @id @default(now()) @db.Timestamptz(6)
   serverId                  Int
   appId                     Int
   TotalRcvProtocolError     BigInt   @default(0)
@@ -200,11 +206,12 @@ model HTTP2ErrorCode {
   TotalSendRefusedStream    BigInt   @default(0)
   TotalSendSettingTimeout   BigInt   @default(0)
   TotalSendStreamClose      BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
 
 model Connection {
-  id                     Int      @id @default(autoincrement())
-  time                   DateTime @default(now()) @db.Timestamptz(6)
+  time                   DateTime @id @default(now()) @db.Timestamptz(6)
   serverId               Int
   appId                  Int
   RespondConnsCliHTTP    BigInt   @default(0)
@@ -214,4 +221,6 @@ model Connection {
   KeepAliveConnsCliHTTPS BigInt   @default(0)
   KeepAliveConnsCliHTTP2 BigInt   @default(0)
   KeepAliveConnsDownload BigInt   @default(0)
+
+  @@index([time, serverId, appId])
 }
