@@ -1,4 +1,3 @@
-
 SELECT create_hypertable('"Bandwidth"', 'time');
 SELECT create_hypertable('"HTTPSBandwidth"', 'time');
 SELECT create_hypertable('"HTTP2Bandwidth"', 'time');
@@ -231,5 +230,35 @@ SELECT
     FLOOR(RANDOM() * 101),                               -- Generate a random KeepAliveConnsCliHTTP2 value between 0 and 100
     FLOOR(RANDOM() * 101)                                -- Generate a random KeepAliveConnsDownload value between 0 and 100
 FROM generate_series(1, 100);
+
+
+
+
+
+
+CREATE OR REPLACE VIEW HTTPStatusCodeTotal5Minutes AS
+SELECT 
+  EXTRACT(epoch FROM time_bucket('5 minutes', time)) AS timestamp,
+  "appId",
+  "serverId"
+  SUM("Total200") AS total200,
+  SUM("Total301") AS total301,
+  SUM("Total302") AS total302,
+  SUM("Total304") AS total304,
+  SUM("Total400") AS total400,
+  SUM("Total403") AS total403,
+  SUM("Total500") AS total500,
+  SUM("Total502") AS total502,
+  SUM("TotalClose") AS totalclose,
+  SUM("TotalUnknown") AS totalunknown
+FROM 
+  "HTTPStatusCode"
+GROUP BY 
+  timestamp,
+  "appId",
+  "serverId"
+ORDER BY 
+  timestamp;
+
 
 
