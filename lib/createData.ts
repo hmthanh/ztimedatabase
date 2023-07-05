@@ -8,8 +8,6 @@ async function createData() {
         {
           server_id: 3,
           app_id: 4,
-          servername: "VNPT",
-          appname: "Baomoi",
           Total200: 9000000,
           Total301: 9000000,
           Total302: 9000000,

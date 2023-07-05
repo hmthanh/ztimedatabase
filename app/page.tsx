@@ -8,8 +8,7 @@ export default function Home() {
         <div className="text-center max-w-screen-sm mb-10">
           <h1 className="text-stone-200 font-bold text-2xl">ZTimeDB</h1>
           <p className="text-stone-400 mt-5">
-            This is a starter kit that uses Next-Auth for simple email + password login and a Vercel Postgres database
-            to persist the data.
+            This is a starter kit that uses Next-Auth for simple email
           </p>
         </div>
         <div className="flex space-x-3">
