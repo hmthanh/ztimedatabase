@@ -1,3 +1,10 @@
+# Procduce insert function in TimescaleDB
+
+## TimescaleDB SQL
+
+### Create function
+
+```sql
 CREATE OR REPLACE FUNCTION public.insert_http_status_code(p_time timestamp with time zone, p_server_id integer, p_app_id integer, p_total_200 integer, p_total_301 integer, p_total_302 integer, p_total_304 integer, p_total_400 integer, p_total_403 integer, p_total_404 integer, p_total_500 integer, p_total_502 integer, p_total_close integer, p_total_unknown integer)
  RETURNS void
  LANGUAGE plpgsql
@@ -26,3 +33,10 @@ EXCEPTION
       AND "appId" = p_app_id;
 END;
 $function$
+```
+
+### Drop function
+
+```sql
+DROP FUNCTION IF EXISTS public.insert_http_status_code(p_time timestamp without time zone, p_server_id integer, p_app_id integer, p_total_200 integer, p_total_301 integer, p_total_302 integer, p_total_304 integer, p_total_400 integer, p_total_403 integer, p_total_404 integer, p_total_500 integer, p_total_502 integer, p_total_close integer, p_total_unknown integer);
+```
