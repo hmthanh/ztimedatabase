@@ -10,217 +10,217 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-model Bandwidth {
-  time                                  DateTime @default(now()) @db.Timestamptz(6)
-  serverId                              Int
-  appId                                 Int
-  TotalBandwidthByCountry_Vietnam       BigInt   @default(0)
-  TotalBandwidthByCountry_US            BigInt   @default(0)
-  TotalBandwidthByCountry_Myanmar       BigInt   @default(0)
-  TotalBandwidthByCountry_International BigInt   @default(0)
-  TotalBandwidthByCountry_Other         BigInt   @default(0)
-  TotalBandwidthByCountry_Notfound      BigInt   @default(0)
-  TotalBandwidthByIsp_Viettel           BigInt   @default(0)
-  TotalBandwidthByIsp_Mobi              BigInt   @default(0)
-  TotalBandwidthByIsp_Vina              BigInt   @default(0)
-  TotalBandwidthByIsp_FPT               BigInt   @default(0)
-  TotalBandwidthByIsp_Other             BigInt   @default(0)
-  TotalBandwidthByIsp_Unknown           BigInt   @default(0)
-  TotalBandwidthReceiveClientHTTP       BigInt   @default(0)
-  TotalBandwidthSendClientHTTP          BigInt   @default(0)
-  TotalBandwidthReceiveClientHTTP2      BigInt   @default(0)
-  TotalBandwidthSendClientHTTP2         BigInt   @default(0)
-  TotalBandwidthReceiveClientHTTPS      BigInt   @default(0)
-  TotalBandwidthSendClientHTTPS         BigInt   @default(0)
-  TotalBandwidthReceiveDownload         BigInt   @default(0)
-  TotalBandwidthSendDownload            BigInt   @default(0)
+model bandwidth {
+  time                                    DateTime @default(now()) @db.Timestamptz(6)
+  serverid                                Int
+  appid                                   Int
+  totalbandwidth_by_country_vietnam       BigInt   @default(0)
+  totalbandwidth_by_country_us            BigInt   @default(0)
+  totalbandwidth_by_country_myanmar       BigInt   @default(0)
+  totalbandwidth_by_country_international BigInt   @default(0)
+  totalbandwidth_by_country_other         BigInt   @default(0)
+  totalbandwidth_by_country_notfound      BigInt   @default(0)
+  totalbandwidth_by_isp_viettel           BigInt   @default(0)
+  totalbandwidth_by_isp_mobi              BigInt   @default(0)
+  totalbandwidth_by_isp_vina              BigInt   @default(0)
+  totalbandwidth_by_isp_fpt               BigInt   @default(0)
+  totalbandwidth_by_isp_other             BigInt   @default(0)
+  totalbandwidth_by_isp_unknown           BigInt   @default(0)
+  totalbandwidth_receive_client_http      BigInt   @default(0)
+  totalbandwidth_send_client_http         BigInt   @default(0)
+  totalbandwidth_receive_client_http2     BigInt   @default(0)
+  totalbandwidth_send_client_http2        BigInt   @default(0)
+  totalbandwidth_receive_client_https     BigInt   @default(0)
+  totalbandwidth_send_client_https        BigInt   @default(0)
+  totalbandwidth_receive_download         BigInt   @default(0)
+  totalbandwidth_send_download            BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model HTTPSBandwidth {
-  time                                           DateTime @default(now()) @db.Timestamptz(6)
-  serverId                                       Int
-  appId                                          Int
-  TotalBandwidthSendHTTPS_Outbound               BigInt   @default(0)
-  TotalBandwidthRecvHTTPS_Inbound                BigInt   @default(0)
-  TotalBandwidthSendHTTPSByCountry_Vietnam       BigInt   @default(0)
-  TotalBandwidthSendHTTPSByCountry_US            BigInt   @default(0)
-  TotalBandwidthSendHTTPSByCountry_Myanmar       BigInt   @default(0)
-  TotalBandwidthSendHTTPSByCountry_International BigInt   @default(0)
-  TotalBandwidthSendHTTPSByCountry_Other         BigInt   @default(0)
-  TotalBandwidthSendHTTPSByCountry_NotFound      BigInt   @default(0)
-  TotalBandwidthSendHTTPSByIsp_Viettel           BigInt   @default(0)
-  TotalBandwidthSendHTTPSByIsp_Mobi              BigInt   @default(0)
-  TotalBandwidthSendHTTPSByIsp_Vina              BigInt   @default(0)
-  TotalBandwidthSendHTTPSByIsp_FPT               BigInt   @default(0)
-  TotalBandwidthSendHTTPSByIsp_Other             BigInt   @default(0)
-  TotalBandwidthSendHTTPSByIsp_Unknown           BigInt   @default(0)
-  DataUsageSendHTTPS_Outbound                    BigInt   @default(0)
-  DataUsageRecvHTTPS_Inbound                     BigInt   @default(0)
-  DataUsageHTTPSByCountry_Vietnam                BigInt   @default(0)
-  DataUsageHTTPSByCountry_US                     BigInt   @default(0)
-  DataUsageHTTPSByCountry_Myanmar                BigInt   @default(0)
-  DataUsageHTTPSByCountry_International          BigInt   @default(0)
-  DataUsageHTTPSByCountry_Other                  BigInt   @default(0)
-  DataUsageHTTPSByCountry_NotFound               BigInt   @default(0)
-  DataUsageSendHTTPSByIsp_Viettel                BigInt   @default(0)
-  DataUsageHTTPSByIsp_Mobi                       BigInt   @default(0)
-  DataUsageHTTPSByIsp_Vina                       BigInt   @default(0)
-  DataUsageHTTPSByIsp_FPT                        BigInt   @default(0)
-  DataUsageHTTPSByIsp_Other                      BigInt   @default(0)
-  DataUsageHTTPSByIsp_Unknown                    BigInt   @default(0)
+model httpsbandwidth {
+  time                                               DateTime @default(now()) @db.Timestamptz(6)
+  serverid                                           Int
+  appid                                              Int
+  totalbandwidth_send_https_outbound                 BigInt   @default(0)
+  totalbandwidth_recv_https_inbound                  BigInt   @default(0)
+  totalbandwidth_send_https_by_country_vietnam       BigInt   @default(0)
+  totalbandwidth_send_https_by_country_us            BigInt   @default(0)
+  totalbandwidth_send_https_by_country_myanmar       BigInt   @default(0)
+  totalbandwidth_send_https_by_country_international BigInt   @default(0)
+  totalbandwidth_send_https_by_country_other         BigInt   @default(0)
+  totalbandwidth_send_https_by_country_notfound      BigInt   @default(0)
+  totalbandwidth_send_https_by_isp_viettel           BigInt   @default(0)
+  totalbandwidth_send_https_by_isp_mobi              BigInt   @default(0)
+  totalbandwidth_send_https_by_isp_vina              BigInt   @default(0)
+  totalbandwidth_send_https_by_isp_fpt               BigInt   @default(0)
+  totalbandwidth_send_https_by_isp_other             BigInt   @default(0)
+  totalbandwidth_send_https_by_isp_unknown           BigInt   @default(0)
+  datausage_send_https_outbound                      BigInt   @default(0)
+  datausage_recv_https_inbound                       BigInt   @default(0)
+  datausage_https_by_country_vietnam                 BigInt   @default(0)
+  datausage_https_by_country_us                      BigInt   @default(0)
+  datausage_https_by_country_myanmar                 BigInt   @default(0)
+  datausage_https_by_country_international           BigInt   @default(0)
+  datausage_https_by_country_other                   BigInt   @default(0)
+  datausage_https_by_country_notfound                BigInt   @default(0)
+  datausage_send_https_by_isp_viettel                BigInt   @default(0)
+  datausage_https_by_isp_mobi                        BigInt   @default(0)
+  datausage_https_by_isp_vina                        BigInt   @default(0)
+  datausage_https_by_isp_fpt                         BigInt   @default(0)
+  datausage_https_by_isp_other                       BigInt   @default(0)
+  datausage_https_by_isp_unknown                     BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model HTTP2Bandwidth {
-  time                                           DateTime @default(now()) @db.Timestamptz(6)
-  serverId                                       Int
-  appId                                          Int
-  TotalBandwidthSendHTTP2_Outbound               BigInt   @default(0)
-  TotalBandwidthRecvHTTP2_Inbound                BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByCountry_Vietnam       BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByCountry_US            BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByCountry_Myanmar       BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByCountry_International BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByCountry_Other         BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByCountry_NotFound      BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByIsp_Viettel           BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByIsp_Mobi              BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByIsp_Vina              BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByIsp_FPT               BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByIsp_Other             BigInt   @default(0)
-  TotalBandwidthSendHTTP2ByIsp_Unknown           BigInt   @default(0)
-  TotalDataUsageSendHTTP2_Outbound               BigInt   @default(0)
-  TotalDataUsageRecvHTTP2_Inbound                BigInt   @default(0)
-  TotalDataUsageHTTP2ByCountry_Vietnam           BigInt   @default(0)
-  TotalDataUsageHTTP2ByCountry_US                BigInt   @default(0)
-  TotalDataUsageHTTP2ByCountry_Myanmar           BigInt   @default(0)
-  TotalDataUsageHTTP2ByCountry_International     BigInt   @default(0)
-  TotalDataUsageHTTP2ByCountry_Other             BigInt   @default(0)
-  TotalDataUsageHTTP2ByCountry_NotFound          BigInt   @default(0)
-  TotalDataUsageHTTP2ByIsp_Viettel               BigInt   @default(0)
-  TotalDataUsageHTTP2ByIsp_Mobi                  BigInt   @default(0)
-  TotalDataUsageHTTP2ByIsp_Vina                  BigInt   @default(0)
-  TotalDataUsageHTTP2ByIsp_FPT                   BigInt   @default(0)
-  TotalDataUsageHTTP2ByIsp_Other                 BigInt   @default(0)
-  TotalDataUsageHTTP2ByIsp_Unknown               BigInt   @default(0)
+model http2bandwidth {
+  time                                               DateTime @default(now()) @db.Timestamptz(6)
+  serverid                                           Int
+  appid                                              Int
+  totalbandwidth_send_http2_outbound                 BigInt   @default(0)
+  totalbandwidth_recv_http2_inbound                  BigInt   @default(0)
+  totalbandwidth_send_http2_by_country_vietnam       BigInt   @default(0)
+  totalbandwidth_send_http2_by_country_us            BigInt   @default(0)
+  totalbandwidth_send_http2_by_country_myanmar       BigInt   @default(0)
+  totalbandwidth_send_http2_by_country_international BigInt   @default(0)
+  totalbandwidth_send_http2_by_country_other         BigInt   @default(0)
+  totalbandwidth_send_http2_by_country_notfound      BigInt   @default(0)
+  totalbandwidth_send_http2_by_isp_viettel           BigInt   @default(0)
+  totalbandwidth_send_http2_by_isp_mobi              BigInt   @default(0)
+  totalbandwidth_send_http2_by_isp_vina              BigInt   @default(0)
+  totalbandwidth_send_http2_by_isp_fpt               BigInt   @default(0)
+  totalbandwidth_send_http2_by_isp_other             BigInt   @default(0)
+  totalbandwidth_send_http2_by_isp_unknown           BigInt   @default(0)
+  totaldatausage_send_http2_outbound                 BigInt   @default(0)
+  totaldatausage_recv_http2_inbound                  BigInt   @default(0)
+  totaldatausage_http2_by_country_vietnam            BigInt   @default(0)
+  totaldatausage_http2_by_country_us                 BigInt   @default(0)
+  totaldatausage_http2_by_country_myanmar            BigInt   @default(0)
+  totaldatausage_http2_by_country_international      BigInt   @default(0)
+  totaldatausage_http2_by_country_other              BigInt   @default(0)
+  totaldatausage_http2_by_country_notfound           BigInt   @default(0)
+  totaldatausage_http2_by_isp_viettel                BigInt   @default(0)
+  totaldatausage_http2_by_isp_mobi                   BigInt   @default(0)
+  totaldatausage_http2_by_isp_vina                   BigInt   @default(0)
+  totaldatausage_http2_by_isp_fpt                    BigInt   @default(0)
+  totaldatausage_http2_by_isp_other                  BigInt   @default(0)
+  totaldatausage_http2_by_isp_unknown                BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model Cache {
-  time                  DateTime @default(now()) @db.Timestamptz(6)
-  serverId              Int
-  appId                 Int
-  PercentMemHitTotal    BigInt   @default(0)
-  PercentDiskHitTotal   BigInt   @default(0)
-  PercentMissCacheTotal BigInt   @default(0)
-  TotalMemHit           BigInt   @default(0)
-  TotalDiskHit          BigInt   @default(0)
-  TotalRequestHTTP      BigInt   @default(0)
-  TotalRequestHTTPS     BigInt   @default(0)
-  TotalRequestHTTP2     BigInt   @default(0)
+model cache {
+  time                    DateTime @default(now()) @db.Timestamptz(6)
+  serverid                Int
+  appid                   Int
+  percent_mem_hit_total   BigInt   @default(0)
+  percent_diskhit_total   BigInt   @default(0)
+  percent_misscache_total BigInt   @default(0)
+  total_memhit            BigInt   @default(0)
+  total_diskhit           BigInt   @default(0)
+  total_request_http      BigInt   @default(0)
+  total_request_https     BigInt   @default(0)
+  total_request_http2     BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model Download {
-  time                                  DateTime @default(now()) @db.Timestamptz(6)
-  serverId                              Int
-  appId                                 Int
-  TotalConnDownload                     BigInt   @default(0)
-  TotalRequestDownload                  BigInt   @default(0)
-  TotalRequestDownloadRetry             BigInt   @default(0)
-  TotalCCUDownload                      BigInt   @default(0)
-  TotalCCURequestDownload               BigInt   @default(0)
-  RecentTimeDownload                    BigInt   @default(0)
-  ConnPoolsDownload_PoolSize            BigInt   @default(0)
-  ConnPoolsDownload_MaxPoolSize         BigInt   @default(0)
-  ConnPoolsDownload_TotalBorrow         BigInt   @default(0)
-  ConnPoolsDownload_TotalInvalid        BigInt   @default(0)
-  ConnPoolsDownload_TotalConnectFailed  BigInt   @default(0)
-  ConnPoolsDownload_TotalConnectSuccess BigInt   @default(0)
+model download {
+  time                                    DateTime @default(now()) @db.Timestamptz(6)
+  serverid                                Int
+  appid                                   Int
+  total_conn_download                     BigInt   @default(0)
+  total_request_download                  BigInt   @default(0)
+  total_request_download_retry            BigInt   @default(0)
+  total_ccu_download                      BigInt   @default(0)
+  total_ccu_request_download              BigInt   @default(0)
+  recenttime_download                     BigInt   @default(0)
+  connpools_download_poolsize             BigInt   @default(0)
+  connpools_download_maxpoolsize          BigInt   @default(0)
+  connpools_download_total_borrow         BigInt   @default(0)
+  connpools_download_total_invalid        BigInt   @default(0)
+  connpools_download_totalconnect_failed  BigInt   @default(0)
+  connpools_download_totalconnect_success BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model InternalDownload {
-  time                                  DateTime @default(now()) @db.Timestamptz(6)
-  serverId                              Int
-  appId                                 Int
-  TotalRequestDownloadInternal          BigInt   @default(0)
-  TotalRequestDownloadInternalRetry     BigInt   @default(0)
-  TotalCCURequestDownloadInternal       BigInt   @default(0)
-  TotalCCUDownloadInternal              BigInt   @default(0)
-  TotalCloseDownloadInternal            BigInt   @default(0)
-  TotalConnDownloadInternal             BigInt   @default(0)
-  RecentTimeDownloadInternal            BigInt   @default(0)
-  TotalBandwidthReceiveDownloadInternal BigInt   @default(0)
-  TotalBandwidthSendDownloadInternal    BigInt   @default(0)
-  TotalBandwidthReceiveClientInternal   BigInt   @default(0)
-  TotalBandwidthSendClientInternal      BigInt   @default(0)
+model internaldownload {
+  time                                      DateTime @default(now()) @db.Timestamptz(6)
+  serverid                                  Int
+  appid                                     Int
+  total_request_download_internal           BigInt   @default(0)
+  total_request_download_internalretry      BigInt   @default(0)
+  total_ccurequest_download_internal        BigInt   @default(0)
+  total_ccu_download_internal               BigInt   @default(0)
+  total_close_download_internal             BigInt   @default(0)
+  total_conn_download_internal              BigInt   @default(0)
+  recenttime_download_internal              BigInt   @default(0)
+  total_bandwidth_receive_download_internal BigInt   @default(0)
+  total_bandwidth_send_download_internal    BigInt   @default(0)
+  total_bandwidth_receive_client_internal   BigInt   @default(0)
+  total_bandwidth_send_client_internal      BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model HTTPStatusCode {
+model httpstatuscode {
   time         DateTime @default(now()) @db.Timestamptz(6)
-  serverId     Int
-  appId        Int
-  Total200     BigInt   @default(0)
-  Total301     BigInt   @default(0)
-  Total302     BigInt   @default(0)
-  Total304     BigInt   @default(0)
-  Total400     BigInt   @default(0)
-  Total403     BigInt   @default(0)
-  Total404     BigInt   @default(0)
-  Total500     BigInt   @default(0)
-  Total502     BigInt   @default(0)
-  TotalClose   BigInt   @default(0)
-  TotalUnknown BigInt   @default(0)
+  serverid     Int
+  appid        Int
+  total200     BigInt   @default(0)
+  total301     BigInt   @default(0)
+  total302     BigInt   @default(0)
+  total304     BigInt   @default(0)
+  total400     BigInt   @default(0)
+  total403     BigInt   @default(0)
+  total404     BigInt   @default(0)
+  total500     BigInt   @default(0)
+  total502     BigInt   @default(0)
+  totalclose   BigInt   @default(0)
+  totalunknown BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model HTTP2ErrorCode {
-  time                      DateTime @default(now()) @db.Timestamptz(6)
-  serverId                  Int
-  appId                     Int
-  TotalRcvProtocolError     BigInt   @default(0)
-  TotalRcvCancel            BigInt   @default(0)
-  TotalRcvCompressionError  BigInt   @default(0)
-  TotalRcvFlowControlError  BigInt   @default(0)
-  TotalRcvFrameSizeError    BigInt   @default(0)
-  TotalRcvInternalError     BigInt   @default(0)
-  TotalRcvRefusedStream     BigInt   @default(0)
-  TotalRcvSettingTimeout    BigInt   @default(0)
-  TotalRcvStreamClose       BigInt   @default(0)
-  TotalSendProtocolError    BigInt   @default(0)
-  TotalSendCancel           BigInt   @default(0)
-  TotalSendCompressionError BigInt   @default(0)
-  TotalSendFlowControlError BigInt   @default(0)
-  TotalSendFrameSizeError   BigInt   @default(0)
-  TotalSendInternalError    BigInt   @default(0)
-  TotalSendRefusedStream    BigInt   @default(0)
-  TotalSendSettingTimeout   BigInt   @default(0)
-  TotalSendStreamClose      BigInt   @default(0)
+model http2errorcode {
+  time                         DateTime @default(now()) @db.Timestamptz(6)
+  serverid                     Int
+  appid                        Int
+  totalrcv_protocol_error      BigInt   @default(0)
+  totalrcv_cancel              BigInt   @default(0)
+  totalrcv_compression_error   BigInt   @default(0)
+  totalrcv_flow_control_error  BigInt   @default(0)
+  totalrcv_framesize_error     BigInt   @default(0)
+  totalrcv_internal_error      BigInt   @default(0)
+  totalrcv_refused_stream      BigInt   @default(0)
+  totalrcv_setting_timeout     BigInt   @default(0)
+  totalrcv_stream_close        BigInt   @default(0)
+  totalsend_protocol_error     BigInt   @default(0)
+  totalsend_cancel             BigInt   @default(0)
+  totalsend_compression_error  BigInt   @default(0)
+  totalsend_flow_control_error BigInt   @default(0)
+  totalsend_framesize_error    BigInt   @default(0)
+  totalsend_internal_error     BigInt   @default(0)
+  totalsend_refused_stream     BigInt   @default(0)
+  totalsend_setting_timeout    BigInt   @default(0)
+  totalsend_stream_close       BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
 
-model Connection {
-  time                   DateTime @default(now()) @db.Timestamptz(6)
-  serverId               Int
-  appId                  Int
-  RespondConnsCliHTTP    BigInt   @default(0)
-  RespondConnsCliHTTPS   BigInt   @default(0)
-  RespondConnsCliHTTP2   BigInt   @default(0)
-  KeepAliveConnsCliHTTP  BigInt   @default(0)
-  KeepAliveConnsCliHTTPS BigInt   @default(0)
-  KeepAliveConnsCliHTTP2 BigInt   @default(0)
-  KeepAliveConnsDownload BigInt   @default(0)
+model connection {
+  time                     DateTime @default(now()) @db.Timestamptz(6)
+  serverid                 Int
+  appid                    Int
+  respond_connscli_http    BigInt   @default(0)
+  respond_connscli_https   BigInt   @default(0)
+  respond_connscli_http2   BigInt   @default(0)
+  keepalive_connscli_http  BigInt   @default(0)
+  keepalive_connscli_https BigInt   @default(0)
+  keepalive_connscli_http2 BigInt   @default(0)
+  keepalive_conns_download BigInt   @default(0)
 
-  @@id([time, serverId, appId])
+  @@id([time, serverid, appid])
 }
